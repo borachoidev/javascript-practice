@@ -1,9 +1,14 @@
-const API_END_POINT = '';
+import { env } from '../config.js'
 
-export const request = (async = url => {
-  const response = await fetch(`${API_END_POINT}${url}`);
+const API_END_POINT = 'https://api.unsplash.com'
 
-  if (response.ok) {
-    return response.json();
-  }
-});
+const DEFAULT_OPTIONS = {
+  headers: {
+    Authorization: `Client-ID ${env.API_KEY}`,
+  },
+}
+
+export const request = (url, options) => {
+  const response = fetch(`${API_END_POINT}${url}`, { options, ...DEFAULT_OPTIONS })
+  return response.then((res) => res.json())
+}

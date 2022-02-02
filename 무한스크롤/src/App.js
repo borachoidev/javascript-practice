@@ -1,9 +1,7 @@
-import Header from './Header.js';
-import Input from './Input.js';
+import Header from './components/Header.js'
+import Input from './components/Input.js'
 
-console.log('app is running');
 export default function App($target) {
-  const header = new Header({ $target });
-  
-  const input = new Input({$target});
+  new Header({ $target })
+  new Input({ $target })
 }

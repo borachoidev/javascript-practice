@@ -1,0 +1,13 @@
+{
+  "name": "infinite-scroll",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Vanilla js infinite scroll app",
+  "scripts": {
+    "start": "http-server"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.0"
+  }
+}

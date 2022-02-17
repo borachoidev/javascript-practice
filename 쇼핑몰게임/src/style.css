@@ -12,7 +12,6 @@ body {
   display: flex;
   justify-content: space-between;
   max-width: 550px;
-
   margin: 0 auto;
 }
 
@@ -45,9 +44,23 @@ body {
 }
 
 .item {
-  display: felx;
+  display: flex;
+  align-items: center;
   background-color: antiquewhite;
   color: rgb(26, 26, 46);
   border-radius: 4px;
   padding: 16px 24px;
+  margin: 8px;
+}
+
+.item .item-image {
+  width: 40px;
+  margin-right: 20px;
+}
+
+.item .item-tag {
+  background-color: burlywood;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 10px;
 }

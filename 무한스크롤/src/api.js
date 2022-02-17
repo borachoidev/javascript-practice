@@ -8,7 +8,7 @@ const DEFAULT_OPTIONS = {
   },
 }
 
-export const request = (url, options) => {
+export const request = (url, options = {}) => {
   const response = fetch(`${API_END_POINT}${url}`, { options, ...DEFAULT_OPTIONS })
   return response.then((res) => res.json())
 }

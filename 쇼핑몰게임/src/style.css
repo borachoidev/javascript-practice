@@ -2,3 +2,52 @@ body {
   background-color: rgb(26, 26, 46);
   color: rgb(238, 232, 225);
 }
+
+.logo {
+  margin: 64px auto 24px auto;
+  display: block;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 550px;
+
+  margin: 0 auto;
+}
+
+.btn {
+  all: unset;
+  cursor: pointer;
+  padding: 0 16px;
+}
+.img-btn {
+  width: 40px;
+}
+
+.blue {
+  background-color: skyblue;
+}
+.yellow {
+  background-color: orange;
+}
+.pink {
+  background-color: palevioletred;
+}
+.color.btn {
+  height: 40px;
+}
+.item-list {
+  margin: 24px auto;
+  max-width: 550px;
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  display: felx;
+  background-color: antiquewhite;
+  color: rgb(26, 26, 46);
+  border-radius: 4px;
+  padding: 16px 24px;
+}

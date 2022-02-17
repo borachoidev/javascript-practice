@@ -3,8 +3,12 @@ const $imageButton = document.querySelectorAll('.img-btn')
 const $colorButton = document.querySelectorAll('.btn.color')
 
 async function fetchItems() {
-  const response = await fetch('../data/data.json')
-  return response.json()
+  try {
+    const response = await fetch('../data/data.json')
+    return response.json()
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 const renderItem = (image, gender, size) => {

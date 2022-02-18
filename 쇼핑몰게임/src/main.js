@@ -1,8 +1,4 @@
-const $items = document.querySelector('.items')
-const $imageButton = document.querySelectorAll('.img-btn')
-const $colorButton = document.querySelectorAll('.color-btn')
-
-async function loadItems() {
+const loadItems = async () => {
   try {
     const response = await fetch('../data/data.json')
     return response.json()
@@ -21,41 +17,31 @@ const createHTMLString = (item) => {
   `
 }
 
-const displayItems = async () => {
-  const { items } = await loadItems()
-  $items.innerHTML = items.map((item) => createHTMLString(item)).join('')
+const displayItems = (items) => {
+  const container = document.querySelector('.items')
+  container.innerHTML = items.map((item) => createHTMLString(item)).join('')
 }
 
-displayItems()
+const setEventListeners = (items) => {
+  const logo = document.querySelector('.logo')
+  const buttons = document.querySelector('.buttons')
+  logo.addEventListener('click', () => displayItems(items))
+  buttons.addEventListener('click', (event) => onButtonClick(event, items))
+}
 
-$imageButton.forEach((button) =>
-  button.addEventListener('click', async () => {
-    const { items } = await fetchItems()
-    let filtered
-    if (button.dataset.type === 'tshirt') {
-      filtered = items.filter((item) => item.type === 'tshirt')
-    } else if (button.dataset.type === 'pants') {
-      filtered = items.filter((item) => item.type === 'pants')
-    } else {
-      filtered = items.filter((item) => item.type === 'skirt')
-    }
+const onButtonClick = (event, items) => {
+  const dataset = event.target.dataset
+  const key = dataset.key
+  const value = dataset.value
+  if (key == null || value == null) return
 
-    $items.innerHTML = filtered.map((item) => createHTMLString(item.image, item.gender, item.size)).join('')
+  const filtered = items.filter((item) => item[key] === value)
+  displayItems(filtered)
+}
+
+loadItems()
+  .then((response) => {
+    displayItems(response.items)
+    setEventListeners(response.items)
   })
-)
-
-$colorButton.forEach((button) =>
-  button.addEventListener('click', async () => {
-    const { items } = await fetchItems()
-    let filtered
-    if (button.dataset.value === 'blue') {
-      filtered = items.filter((item) => item.color === 'blue')
-    } else if (button.dataset.value === 'pink') {
-      filtered = items.filter((item) => item.color === 'pink')
-    } else {
-      filtered = items.filter((item) => item.color === 'yellow')
-    }
-
-    $items.innerHTML = iltered.map((item) => createHTMLString(item.image, item.gender, item.size)).join('')
-  })
-)
+  .catch(console.log)

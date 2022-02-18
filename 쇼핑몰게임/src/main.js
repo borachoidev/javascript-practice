@@ -2,7 +2,7 @@ const $items = document.querySelector('.items')
 const $imageButton = document.querySelectorAll('.img-btn')
 const $colorButton = document.querySelectorAll('.color-btn')
 
-async function fetchItems() {
+async function loadItems() {
   try {
     const response = await fetch('../data/data.json')
     return response.json()
@@ -11,20 +11,22 @@ async function fetchItems() {
   }
 }
 
-const renderItem = (image, gender, size) => {
-  return ` <li class='item'><img src="../public/images/${image}" class="item-thumnail" /><span class="item-tag">${gender}</span><span class="item-tag">${size}</span></li>`
-}
-
-const getAllItems = async () => {
-  const { items } = await fetchItems()
-  console.log(items)
-
-  $items.innerHTML = `
-    ${items.map((item) => renderItem(item.image, item.gender, item.size)).join('')}
+const createHTMLString = (item) => {
+  return `
+    <li class='item'>
+      <img src="../public/images/${item.image}" class="item-thumnail" alt =${item.type} />
+      <span class="item-tag">${item.gender}</span>
+      <span class="item-tag">${item.size}</span>
+    </li>
   `
 }
 
-getAllItems()
+const displayItems = async () => {
+  const { items } = await loadItems()
+  $items.innerHTML = items.map((item) => createHTMLString(item)).join('')
+}
+
+displayItems()
 
 $imageButton.forEach((button) =>
   button.addEventListener('click', async () => {
@@ -38,9 +40,7 @@ $imageButton.forEach((button) =>
       filtered = items.filter((item) => item.type === 'skirt')
     }
 
-    $items.innerHTML = `
-    ${filtered.map((item) => renderItem(item.image, item.gender, item.size)).join('')}
-  `
+    $items.innerHTML = filtered.map((item) => createHTMLString(item.image, item.gender, item.size)).join('')
   })
 )
 
@@ -56,8 +56,6 @@ $colorButton.forEach((button) =>
       filtered = items.filter((item) => item.color === 'yellow')
     }
 
-    $items.innerHTML = `
-    ${filtered.map((item) => renderItem(item.image, item.gender, item.size)).join('')}
-  `
+    $items.innerHTML = iltered.map((item) => createHTMLString(item.image, item.gender, item.size)).join('')
   })
 )

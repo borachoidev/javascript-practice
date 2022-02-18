@@ -1,66 +1,105 @@
+:root {
+  /* color */
+  --color-background: #1a1a2e;
+  --color-base-light: #faebd7;
+  --color-blue: #19a2d8;
+  --color-yellow: #ffa500;
+  --color-pink: #d87093;
+  --color-tag: #deb887;
+
+  /* size */
+  --base-space: 8px;
+  --size-button: 60px;
+  --size-border: 4px;
+  --size-thumnail: 50px;
+  --font-size: 18px;
+  /* animation */
+  --animation-duration: 0.3s;
+}
+
 body {
-  background-color: rgb(26, 26, 46);
-  color: rgb(238, 232, 225);
+  height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {
-  margin: 64px auto 24px auto;
-  display: block;
-}
-
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  max-width: 550px;
-  margin: 0 auto;
+  cursor: pointer;
+  transition: transsform var(--animation-duration) ease;
 }
 
 .btn {
-  all: unset;
+  background-color: transparent;
+  border: none;
+  outline: none;
   cursor: pointer;
-  padding: 0 16px;
+  transition: transsform var(--animation-duration) ease;
+  margin-right: var(--base-space);
 }
+
+.logo:hover,
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+}
+
 .img-btn {
-  width: 40px;
+  width: var(--size-button);
+  height: var(--size-button);
 }
 
 .blue {
-  background-color: skyblue;
+  background-color: var(--color-blue);
 }
+
 .yellow {
-  background-color: orange;
+  background-color: var(--color-yellow);
 }
+
 .pink {
-  background-color: palevioletred;
+  background-color: var(--color-pink);
 }
-.color.btn {
-  height: 40px;
+
+.color-btn {
+  font-size: var(--font-size);
+  padding: calc(var(--base-space) * 2);
+  border-radius: var(--size-border);
 }
-.item-list {
-  margin: 24px auto;
-  max-width: 550px;
+
+.items {
+  width: 60%;
+  height: 60%;
   list-style: none;
-  padding: 0;
+  padding-left: 0;
+  overflow-y: scroll;
 }
 
 .item {
   display: flex;
   align-items: center;
-  background-color: antiquewhite;
-  color: rgb(26, 26, 46);
-  border-radius: 4px;
-  padding: 16px 24px;
-  margin: 8px;
+  background-color: var(--color-base-light);
+  color: var(--color-background);
+  border-radius: var(--size-border);
+  padding: var(--base-space);
+  margin-bottom: var(--base-space);
 }
 
-.item .item-image {
-  width: 40px;
-  margin-right: 20px;
+.item .item-thumnail {
+  width: var(--size-thumnail);
+  height: var(--size-thumnail);
 }
 
 .item .item-tag {
   background-color: burlywood;
-  padding: 4px 8px;
-  border-radius: 4px;
-  margin-right: 10px;
+  padding: var(--base-space);
+  border-radius: var(--size-border);
+  margin-left: var(--base-space);
+  font-size: var(--font-size);
 }

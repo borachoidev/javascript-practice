@@ -1,6 +1,6 @@
-const $itemList = document.querySelector('.item-list')
+const $items = document.querySelector('.items')
 const $imageButton = document.querySelectorAll('.img-btn')
-const $colorButton = document.querySelectorAll('.btn.color')
+const $colorButton = document.querySelectorAll('.color-btn')
 
 async function fetchItems() {
   try {
@@ -12,14 +12,14 @@ async function fetchItems() {
 }
 
 const renderItem = (image, gender, size) => {
-  return ` <li class='item'><img src="../public/images/${image}" class="item-image" /><span class="item-tag">${gender}</span><span class="item-tag">${size}</span></li>`
+  return ` <li class='item'><img src="../public/images/${image}" class="item-thumnail" /><span class="item-tag">${gender}</span><span class="item-tag">${size}</span></li>`
 }
 
 const getAllItems = async () => {
   const { items } = await fetchItems()
   console.log(items)
 
-  $itemList.innerHTML = `
+  $items.innerHTML = `
     ${items.map((item) => renderItem(item.image, item.gender, item.size)).join('')}
   `
 }
@@ -38,7 +38,7 @@ $imageButton.forEach((button) =>
       filtered = items.filter((item) => item.type === 'skirt')
     }
 
-    $itemList.innerHTML = `
+    $items.innerHTML = `
     ${filtered.map((item) => renderItem(item.image, item.gender, item.size)).join('')}
   `
   })
@@ -56,7 +56,7 @@ $colorButton.forEach((button) =>
       filtered = items.filter((item) => item.color === 'yellow')
     }
 
-    $itemList.innerHTML = `
+    $items.innerHTML = `
     ${filtered.map((item) => renderItem(item.image, item.gender, item.size)).join('')}
   `
   })

@@ -4,7 +4,7 @@ export default function SearchResult({ target, initialState, onClick }) {
   this.onClick = onClick
 
   const searchResult = document.createElement('section')
-  searchResult.classList = 'searchList'
+  searchResult.classList = 'search-result'
   target.appendChild(searchResult)
 
   this.setState = nextState => {
@@ -14,21 +14,19 @@ export default function SearchResult({ target, initialState, onClick }) {
   }
 
   this.render = () => {
-    console.log(this.state)
     if (!this.state.length) {
-      console.log('sdfsdf')
       searchResult.innerHTML = `
-        <section class="searchResult__null" >
+        <section class="search-result__null" >
           <img src="./assets/null.gif" />
-          <p class="searchResult__null__content">검색 결과가 없습니다 ━</p>
+          <p class="search-result__null__content">검색 결과가 없습니다 ━</p>
         </section>
         `
     } else {
       searchResult.innerHTML = `
-      <ul class="searchResult__container">
+      <ul class="search-result__container">
        ${this.state
          .map(
-           result => ` <li class="searchResult__item" data-id="${result.id}" data-name="${result.name}">
+           result => ` <li class="search-result__item" data-id="${result.id}" data-name="${result.name}">
                           <img src="${result.url}"/>
                         </li>`
          )
@@ -39,7 +37,7 @@ export default function SearchResult({ target, initialState, onClick }) {
   }
 
   searchResult.addEventListener('click', event => {
-    const item = event.target.closest('.searchResult__item')
+    const item = event.target.closest('.search-result__item')
     if (!item) return
     const { id } = item.dataset
     this.onClick(id)

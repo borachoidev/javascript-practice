@@ -1,1 +1,3 @@
-console.log('app is running')
+import App from './app.js'
+
+new App(document.querySelector('#App'))

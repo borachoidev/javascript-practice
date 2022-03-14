@@ -20,4 +20,7 @@ export const api = {
   searchCats: query => {
     return request(`/cats/search?q=${query}`)
   },
+  fetchDetail: id => {
+    return request(`/cats/${id}`)
+  },
 }

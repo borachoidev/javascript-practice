@@ -49,3 +49,24 @@ body * {
   flex: 1;
   margin-right: 16px;
 }
+
+.searchResult {
+  width: 100%;
+}
+.searchResult__container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  list-style: none;
+  grid-gap: 16px;
+}
+
+.searchResult__item {
+  display: inline-block;
+  width: 100%;
+}
+
+.searchResult__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

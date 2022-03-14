@@ -1,6 +1,7 @@
 console.log('header')
 
-export default function Headers({ target }) {
+export default function Headers({ target, onSearch }) {
+  this.onSearch = onSearch
   const header = document.createElement('header')
   header.classList = 'header'
   const searchInput = document.createElement('input')
@@ -13,4 +14,10 @@ export default function Headers({ target }) {
   header.appendChild(searchInput)
   header.appendChild(randomBtn)
   target.appendChild(header)
+
+  searchInput.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      this.onSearch(event.target.value)
+    }
+  })
 }

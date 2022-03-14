@@ -1,3 +1,6 @@
+:root {
+  --box-shadow: 1px 1px 20px -5px rgba(0, 0, 0, 0.3);
+}
 @font-face {
   font-family: 'Goyang';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Goyang.woff')
@@ -62,7 +65,12 @@ body * {
 
 .searchResult__item {
   display: inline-block;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
   width: 100%;
+}
+.searchResult__item:hover {
+  filter: brightness(75%);
 }
 
 .searchResult__item img {
@@ -87,4 +95,44 @@ body * {
   left: 50%;
   max-width: 400px;
   transform: translate(-50%, -50%);
+}
+
+.image-info__content {
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: var(--box-shadow);
+}
+
+.image-info__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  align-items: center;
+}
+
+.image-info__close {
+  border: none;
+  outline: none;
+  font-size: 24px;
+  padding: 8px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.image-info__image {
+  width: 100%;
+}
+
+.image-info__description {
+  padding: 16px;
+}
+
+.image-info__description p {
+  margin: 0;
+  padding-bottom: 8px;
 }

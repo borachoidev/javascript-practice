@@ -3,7 +3,8 @@ export default function Loading({ target, initialState }) {
   this.state = initialState
 
   const loading = document.createElement('div')
-  loading.classList = 'Modal Loading'
+  loading.classList = 'modal loading'
+  loading.style.display = 'none'
   target.appendChild(loading)
 
   this.setState = nextState => {

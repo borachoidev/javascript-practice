@@ -8,6 +8,7 @@ export default function Loading({ target, initialState }) {
   target.appendChild(loading)
 
   this.setState = nextState => {
+    if (this.state === nextState) return
     this.state = nextState
     this.render()
   }

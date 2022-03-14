@@ -7,7 +7,7 @@ import SearchResult from './components/searchResult.js'
 console.log('app')
 export default function App(target) {
   this.state = {
-    result: [],
+    result: null,
     loading: false,
     popUpVisible: false,
     detail: null,
@@ -21,10 +21,14 @@ export default function App(target) {
       try {
         this.setState({ ...this.state, loading: true })
         const { data } = await api.searchCats(query)
+        console.log(data)
         this.setState({ ...this.state, result: data })
       } catch (error) {
-        //에러처리
-        console.log(error)
+        console.log(
+          '%c        ',
+          `font-size:360px; background:url(${error.data}) no-repeat; background-size:100% `
+        )
+        console.error(`Error: ${error.message}`)
       } finally {
         this.setState({ ...this.state, loading: false })
       }
@@ -40,8 +44,11 @@ export default function App(target) {
         const { data } = await api.fetchDetail(id)
         this.setState({ ...this.state, detail: data, popUpVisible: true })
       } catch (error) {
-        //에러처리
-        console.log(error)
+        console.log(
+          '%c        ',
+          `font-size:360px; background:url(${error.data}) no-repeat; background-size:100% `
+        )
+        console.error(`Error: ${error.message}`)
       } finally {
         this.setState({ ...this.state, loading: false })
       }

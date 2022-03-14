@@ -138,3 +138,14 @@ body * {
   margin: 0;
   padding-bottom: 8px;
 }
+
+.searchResult__null {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchResult__null__content {
+  font-size: 2rem;
+}

@@ -21,14 +21,9 @@ export default function App(target) {
       try {
         this.setState({ ...this.state, loading: true })
         const { data } = await api.searchCats(query)
-        console.log(data)
         this.setState({ ...this.state, result: data })
       } catch (error) {
-        console.log(
-          '%c        ',
-          `font-size:360px; background:url(${error.data}) no-repeat; background-size:100% `
-        )
-        console.error(`Error: ${error.message}`)
+        this.handleError(error)
       } finally {
         this.setState({ ...this.state, loading: false })
       }
@@ -44,11 +39,7 @@ export default function App(target) {
         const { data } = await api.fetchDetail(id)
         this.setState({ ...this.state, detail: data, popUpVisible: true })
       } catch (error) {
-        console.log(
-          '%c        ',
-          `font-size:360px; background:url(${error.data}) no-repeat; background-size:100% `
-        )
-        console.error(`Error: ${error.message}`)
+        this.handleError(error)
       } finally {
         this.setState({ ...this.state, loading: false })
       }
@@ -83,4 +74,12 @@ export default function App(target) {
       this.setState({ ...this.state, popUpVisible: false })
     }
   })
+
+  this.handleError = error => {
+    console.log(
+      '%c        ',
+      `font-size:360px; background:url(${error.url}) no-repeat; background-size:100% `
+    )
+    console.error(`Error: ${error.message}`)
+  }
 }

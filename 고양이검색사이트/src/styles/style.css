@@ -19,3 +19,33 @@ body * {
 *:after {
   box-sizing: inherit;
 }
+
+#App {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.header__random-btn {
+  display: block;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: url('../../assets/nyan-cat.gif');
+  background-size: cover;
+  background-position-y: 50%;
+}
+
+.header__search-input {
+  max-width: 700px;
+  font-size: 32px;
+  flex: 1;
+  margin-right: 16px;
+}

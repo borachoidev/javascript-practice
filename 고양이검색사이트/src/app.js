@@ -11,15 +11,26 @@ export default function App(target) {
     loading: false,
     popUpVisible: false,
     detail: null,
+    queries: [],
   }
 
   const loading = new Loading({ target, initialState: this.state.loading })
 
-  new Headers({
+  const header = new Headers({
     target,
+    initialState: this.state.queries,
     onSearch: async query => {
       try {
-        this.setState({ ...this.state, loading: true })
+        let newQueries = [...this.state.queries]
+        if (newQueries.includes(query)) {
+          newQueries = newQueries.filter(_query => _query !== query)
+        }
+        if (newQueries.length >= 5) {
+          newQueries = newQueries.slice(1)
+        }
+        newQueries.push(query)
+
+        this.setState({ ...this.state, queries: newQueries, loading: true })
         const { data } = await api.searchCats(query)
         this.setState({ ...this.state, result: data })
       } catch (error) {
@@ -65,6 +76,7 @@ export default function App(target) {
       popUpVisible: this.state.popUpVisible,
       detail: this.state.detail,
     })
+    header.recentQuery.setState(this.state.queries)
   }
 
   document.addEventListener('keydown', event => {

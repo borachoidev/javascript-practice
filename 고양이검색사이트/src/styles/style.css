@@ -172,6 +172,7 @@ body * {
 .recent-query {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .recent-query__list {
   list-style: none;
